@@ -4,10 +4,12 @@ import axios from 'axios';
 import { Signal, PerformanceMetrics, BacktestResult } from '@/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
 
 const api = axios.create({
   baseURL: API_URL,
   timeout: 30000,
+  headers: API_KEY ? { 'x-api-key': API_KEY } : {},
 });
 
 // Signal endpoints
