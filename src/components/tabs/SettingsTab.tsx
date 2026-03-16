@@ -45,6 +45,7 @@ export const SettingsTab: React.FC = () => {
         slReopenMinMinutes:    rawSettings.slReopenMinMinutes,
         checkIntervalSeconds:  rawSettings.checkIntervalSeconds ?? 60,
         notifyBlockedSignals:  rawSettings.notifyBlockedSignals ?? true,
+        antStrategy:           rawSettings.antStrategy ?? false,
         logLevel:              rawSettings.logLevel,
       });
       setConn({
@@ -300,6 +301,16 @@ export const SettingsTab: React.FC = () => {
             className={`relative w-10 h-5 rounded-full transition-colors ${trading.notifyBlockedSignals ? 'bg-green-600' : 'bg-gray-700'}`}
           >
             <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${trading.notifyBlockedSignals ? 'left-5' : 'left-0.5'}`} />
+          </button>
+        </InputRow>
+
+        <InputRow label="Ant Strategy" hint="Al raggiungimento di TP1, sposta automaticamente lo Stop Loss al prezzo di entrata (breakeven)">
+          <button
+            type="button"
+            onClick={() => setTrading(p => ({ ...p, antStrategy: !p.antStrategy }))}
+            className={`relative w-10 h-5 rounded-full transition-colors ${trading.antStrategy ? 'bg-green-600' : 'bg-gray-700'}`}
+          >
+            <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${trading.antStrategy ? 'left-5' : 'left-0.5'}`} />
           </button>
         </InputRow>
 
